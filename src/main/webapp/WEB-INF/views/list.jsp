@@ -1,25 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-	crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-	
-	<my:navBar current="list"/>
-		
+
+	<my:navBar current="list" />
+
+	<my:alert />
+
 	<div class="container-lg">
-		<h1>게시물 목록 보기</h1>    
+		<h1>게시물 목록 보기</h1>
 		<a class="btn btn-secondary" href="/add">추가하기</a>
 		<table class="table">
 			<thead>
@@ -36,7 +33,8 @@
 						<td>${board.id }</td>
 						<td>
 							<!-- 제목 클릭시 본문내용으로 넘어감 -->
-							<a href="/id/${board.id }">   <!--  pathVariable로 함 (쿼리스트링/requestParam 방법도 있음) -->
+							<a href="/id/${board.id }">
+								<!--  pathVariable로 함 (쿼리스트링/requestParam 방법도 있음) -->
 								${board.title }
 							</a>
 						</td>
@@ -47,20 +45,7 @@
 			</tbody>
 		</table>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-	<c:if test="${param.success eq 'remove' }">
-		<script>
-			alert("게시물이 삭제되었습니다.")
-		</script>
-	</c:if>
-	<c:if test="${param.success eq 'add'}">
-		<script>
-			alert("게시물이 추가되었습니다.");
-		</script>
-	</c:if>
 </body>
 </html>

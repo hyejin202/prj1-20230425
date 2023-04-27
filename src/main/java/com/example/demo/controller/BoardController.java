@@ -19,7 +19,7 @@ public class BoardController {
 	private BoardService service;
 	
 	// 경로 : http://localhost:8080
-	// 경로 : http://localhost:8080/list
+	// 경로 : http://localhost:8080/list?page=
 	
 	//게시물 목록
 //	@RequestMapping({"/", "list"}, method = RequestMethod.GET)
@@ -66,11 +66,11 @@ public class BoardController {
 		 
 		 if(ok) {
 			 //해당 게시물 보기로 리다이렉션
-			 rttr.addAttribute("success", "success");
+			 rttr.addFlashAttribute("message", board.getId() + "번 게시물이 수정되었습니다.");
 			 return "redirect:/id/" + board.getId();   //redirect:/list - 게시물목록보기로 리다이렉션
 		 } else {
 			 // 수정 잘 안됐을 때 수정폼으로 리다이렉션
-			 rttr.addAttribute("fail", "fail");
+			 rttr.addFlashAttribute("message", board.getId() + "번 게시물이 수정되지 않았습니다.");
 			 return "redirect:/modify/" + board.getId();
 		 }
 	 }
@@ -79,7 +79,11 @@ public class BoardController {
 	 public String remove(Integer id, RedirectAttributes rttr) {
 		 boolean ok = service.remove(id);
 		 if(ok) {
-			 rttr.addAttribute("success", "remove");
+			 // 쿼리스트링에 추가
+//			 rttr.addAttribute("success", "remove");
+			 //모델에 추가
+			 rttr.addFlashAttribute("message", id + "번 게시물이 삭제되었습니다.");
+			 
 			 return "redirect:/list";
 		 }else {
 			 return "redirect/id/" + id;
@@ -101,11 +105,12 @@ public class BoardController {
 		 boolean ok = service.add(board);             
 		 //3. add attribute
 		 if(ok) {
-			 rttr.addAttribute("success", "add"); 
+			 rttr.addFlashAttribute("message", board.getId() + "번 게시물이 등록되었습니다.");
 			 return "redirect:/list";
 //			 return "redirect:/id/" + board.getId();
 		 } else {
 			 //추가 하기 실패했을때, 작성했던 내용 살리기
+			 rttr.addFlashAttribute("message", "게시물 등록 중 문제가 발생하였습니다.");
 			 rttr.addFlashAttribute("board", board);
 			 return "redirect:/add";
 		 }
