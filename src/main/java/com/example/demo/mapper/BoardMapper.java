@@ -44,5 +44,13 @@ public interface BoardMapper {
 			""")
 	int deleteById(Integer id);
 	
+	// 파라미터로 받은 값 추가하기
+	@Insert("""
+			INSERT INTO Board(title, body, writer)
+			VALUES (#{title}, #{body}, #{writer})
+			""")
+	@Options(useGeneratedKeys = true, keyProperty = "id")  //자동증가키
+	int insert(Board board);
+
 	
 }

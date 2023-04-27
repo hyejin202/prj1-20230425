@@ -20,6 +20,7 @@ public class BoardController {
 	
 	// 경로 : http://localhost:8080
 	// 경로 : http://localhost:8080/list
+	
 	//게시물 목록
 //	@RequestMapping({"/", "list"}, method = RequestMethod.GET)
 	 @GetMapping({"/", "list"})
@@ -83,9 +84,34 @@ public class BoardController {
 		 }else {
 			 return "redirect/id/" + id;
 		 }
-		 
 	 }
 	 
+	 @GetMapping("add")
+	 public String addForm() {
+		 // 게시물 작성 form (view)로 포워드
+		 
+		 return "add";
+	 }
+	 
+	 @PostMapping("add")
+	 public String addProcess(Board board, RedirectAttributes rttr) {
+		 // 새 게시물 db에 추가
+		 //1.
+		 //2. business logic처리
+		 boolean ok = service.add(board);             
+		 //3. add attribute
+		 if(ok) {
+			 rttr.addAttribute("success", "add"); 
+			 return "redirect:/list";
+//			 return "redirect:/id/" + board.getId();
+		 } else {
+			 //추가 하기 실패했을때, 작성했던 내용 살리기
+			 rttr.addFlashAttribute("board", board);
+			 return "redirect:/add";
+		 }
+		 //4. forward / redirect
+		 // 게시물 목록보기로 리다이렉션
+	 }
 	
 	
 }

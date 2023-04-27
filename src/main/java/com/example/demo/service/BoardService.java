@@ -38,5 +38,12 @@ public class BoardService {
 		return cnt == 1;
 	}
 	
+	// 추가 메소드
+	public boolean add(Board board) {
+		int cnt = mapper.insert(board);
+//		int cnt = 0;   //추가 실패
+		return cnt == 1;
+	}
+	
 	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +15,19 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	
+	<my:navBar current="list"/>
+		
 	<div class="container-lg">
-		<h1>게시물 목록 보기</h1>
+		<h1>게시물 목록 보기</h1>    
+		<a class="btn btn-secondary" href="/add">추가하기</a>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>#</th>
 					<th>제목</th>
 					<th>작성자</th>
-					<th>작성일</th>
+					<th>작성일시</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,6 +55,11 @@
 	<c:if test="${param.success eq 'remove' }">
 		<script>
 			alert("게시물이 삭제되었습니다.")
+		</script>
+	</c:if>
+	<c:if test="${param.success eq 'add'}">
+		<script>
+			alert("게시물이 추가되었습니다.");
 		</script>
 	</c:if>
 </body>
