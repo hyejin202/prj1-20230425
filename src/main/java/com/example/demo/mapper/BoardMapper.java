@@ -49,23 +49,35 @@ public interface BoardMapper {
 			INSERT INTO Board(title, body, writer)
 			VALUES (#{title}, #{body}, #{writer})
 			""")
-	@Options(useGeneratedKeys = true, keyProperty = "id")  //자동증가키
+	@Options(useGeneratedKeys = true, keyProperty = "id")  //자동 증가키
 	int insert(Board board);
 	
 	@Select("""
+			<script>
+			<bind name="pattern" value="'%' + search + '%'" />
 			SELECT
 			 	id, title, writer, inserted
 			FROM Board
+			WHERE 	   title  LIKE #{pattern}
+					OR writer LIKE #{pattern}
+					OR body   LIKE #{pattern}
 			ORDER BY id DESC
 			LIMIT #{startIndex}, #{rowPerPage}
+			</script>
 			""")
-	List<Board> selectAllPaging(Integer startIndex, Integer rowPerPage);
+	List<Board> selectAllPaging(Integer startIndex, Integer rowPerPage, String search);
 	
 	@Select("""
+			<script>
+			<bind name="pattern" value="'%' + search + '%'" />
 			SELECT COUNT(*)
 			FROM Board
+			WHERE  	title  LIKE #{pattern}
+					OR writer LIKE #{pattern}
+					OR body   LIKE #{pattern}
+			</script>
 			""")
-	Integer countAll();
-
+	Integer countAll(String search);
+	
 	
 }

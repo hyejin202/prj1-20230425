@@ -25,15 +25,20 @@ public class BoardController {
 //	@RequestMapping({"/", "list"}, method = RequestMethod.GET)
 	 @GetMapping({"/", "list"})
 	 public String list(Model model, 
-			 @RequestParam(value="page", defaultValue = "1") Integer page) {   // 경로가 2가지이므로 충돌안되게 경로지정(String 리턴타입)
+			 @RequestParam(value="page", defaultValue = "1") Integer page,
+			 @RequestParam(value="search", defaultValue="")String search) {   // 경로가 2가지이므로 충돌안되게 경로지정(String 리턴타입)
 		 // 1. request param 수집/가공
 		 // 2. business logic 처리
 //		 List<Board> list = service.listBoard(); //service의 listBoard()메소드 실행 결과를 list에 담음
-		Map<String, Object> result= service.listBoard(page); // 페이지 처리, 오버로딩해야함(파라미터 있는 메소드)
+		Map<String, Object> result= service.listBoard(page, search); // 페이지 처리, 오버로딩해야함(파라미터 있는 메소드)
+		
 		 // 3. add attribute
-		 model.addAttribute("boardList", result.get("boardList"));
-		 model.addAttribute("pageInfo", result.get("pageInfo"));
-		 
+//		 model.addAttribute("boardList", result.get("boardList"));
+//		 model.addAttribute("pageInfo", result.get("pageInfo"));
+		//모델에 어트리뷰트 한번에 넣기
+		 model.addAllAttributes(result);
+		
+		
 		 // 4. forward / redirect 
 		 return  "list";
 		 

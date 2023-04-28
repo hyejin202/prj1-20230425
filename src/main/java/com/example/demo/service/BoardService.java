@@ -19,7 +19,7 @@ public class BoardService {
 		List<Board> list = mapper.selectAll();
 		return list;
 	}
-	public Map<String, Object> listBoard(Integer page) {
+	public Map<String, Object> listBoard(Integer page, String search) {
 		//페이지 당 행의 수
 		Integer rowPerPage = 10;  
 		//쿼리 LIMIT절에 사용할 시작 인덱스
@@ -27,7 +27,7 @@ public class BoardService {
 		
 		// 페이지네이션 필요한 정보
 		//전체레코드 수
-		Integer numOfRecords = mapper.countAll();
+		Integer numOfRecords = mapper.countAll(search);
 		//마지막 페이지 번호
 		Integer lastPageNum = (numOfRecords-1) / rowPerPage + 1; 
 		
@@ -41,14 +41,16 @@ public class BoardService {
 		//마지막 페이지보다 클 수 없음
 		rightPageNum = Math.min(lastPageNum, rightPageNum);
 		
-		// numOfRecordslastPageNumleftPageNumrightPageNum - map에 넣어 저장
+		
+		// numOfRecords, lastPageNum, leftPageNum, rightPageNum - map에 넣어 저장
 		Map<String, Object> pageInfo = new HashMap<>();
 		pageInfo.put("rightPageNum", rightPageNum);
 		pageInfo.put("leftPageNum", leftPageNum);
-
+		pageInfo.put("currentPageNum", page);
+		pageInfo.put("lastPageNum", lastPageNum);
 		
 		// 게시물 목록
-		List<Board> list =  mapper.selectAllPaging(startIndex, rowPerPage);  //startIndex필요함
+		List<Board> list =  mapper.selectAllPaging(startIndex, rowPerPage, search);  //startIndex필요함
 		return Map.of("pageInfo", pageInfo, "boardList", list);
 		
 	}
