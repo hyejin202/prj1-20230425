@@ -32,11 +32,8 @@
 					<tr>
 						<td>${board.id }</td>
 						<td>
-							<!-- 제목 클릭시 본문내용으로 넘어감 -->
-							<a href="/id/${board.id }">
-								<!--  pathVariable로 함 (쿼리스트링/requestParam 방법도 있음) -->
-								${board.title }
-							</a>
+							<!-- 제목 클릭시 본문내용으로 넘어감 --> <a href="/id/${board.id }"> <!--  pathVariable로 함 (쿼리스트링/requestParam 방법도 있음) --> ${board.title }
+						</a>
 						</td>
 						<td>${board.writer }</td>
 						<td>${board.inserted }</td>
@@ -45,6 +42,26 @@
 			</tbody>
 		</table>
 	</div>
+
+	<div class="container-lg">
+		<div class="row" >
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<c:forEach begin="${pageInfo.leftPageNum }" end="${pageInfo.rightPageNum }" var="pageNum">			
+						<c:url value="/list" var="pageLink">
+							<c:param name="page" value="${pageNum }"></c:param>
+						</c:url>
+						<li class="page-item">
+							<a class="page-link" href="${pageLink }">${pageNum }</a>
+						</li>
+					</c:forEach>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </body>

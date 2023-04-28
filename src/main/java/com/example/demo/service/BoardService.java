@@ -19,6 +19,39 @@ public class BoardService {
 		List<Board> list = mapper.selectAll();
 		return list;
 	}
+	public Map<String, Object> listBoard(Integer page) {
+		//페이지 당 행의 수
+		Integer rowPerPage = 10;  
+		//쿼리 LIMIT절에 사용할 시작 인덱스
+		Integer startIndex = (page-1) * rowPerPage;
+		
+		// 페이지네이션 필요한 정보
+		//전체레코드 수
+		Integer numOfRecords = mapper.countAll();
+		//마지막 페이지 번호
+		Integer lastPageNum = (numOfRecords-1) / rowPerPage + 1; 
+		
+		// 설정 : 총 10페이지 - 현재 페이지 기준으로 왼쪽 4개, 오른쪽 5개
+		// 페이지네이션 왼쪽 번호
+		Integer leftPageNum = page - 5;
+		//1보다 작을 수 없다
+		leftPageNum = Math.max(leftPageNum, 1);
+		//페이지네이션 오른쪽 번호
+		Integer rightPageNum = leftPageNum + 9;
+		//마지막 페이지보다 클 수 없음
+		rightPageNum = Math.min(lastPageNum, rightPageNum);
+		
+		// numOfRecordslastPageNumleftPageNumrightPageNum - map에 넣어 저장
+		Map<String, Object> pageInfo = new HashMap<>();
+		pageInfo.put("rightPageNum", rightPageNum);
+		pageInfo.put("leftPageNum", leftPageNum);
+
+		
+		// 게시물 목록
+		List<Board> list =  mapper.selectAllPaging(startIndex, rowPerPage);  //startIndex필요함
+		return Map.of("pageInfo", pageInfo, "boardList", list);
+		
+	}
 	
 	//id 받아서 mapper에 건네주면 mapper는 데이터를 가져와 해당 id의 본문을 보여줌
 	public Board getBoard(Integer id) {
@@ -44,6 +77,7 @@ public class BoardService {
 //		int cnt = 0;   //추가 실패
 		return cnt == 1;
 	}
+
 	
 	
 }

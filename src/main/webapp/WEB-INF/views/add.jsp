@@ -19,21 +19,27 @@
 	<my:navBar current="add" />
 
 	<div class="container-lg">
+		<div class="row justify-content-center">
+		
 	<h1>게시물 작성</h1>
 		<form action="add" method="post">
-			<div>
-				제목 : <input type="text" name="title"/>
+			<div class="mb-3">
+				<label for="titleInput" class="form-label">제목</label>
+				<input id="titleInput" class="form-control" type="text" name="title" value="${board.title }"/>
 			</div>
 			<div>
-				본문 : <textarea name="body"></textarea>
+				<label for="bodyTextarea" class="form-label">본문</label>
+				<textarea id="bodyTextarea" class="form-control" name="body" rows="10">${board.body }</textarea>
 			</div>
-			<div>
-				작성자 : <input type="text" name="writer" />
+			<div class="mb-3">
+				<label for="writerInput" class="form-label">작성자</label>
+				<input id="writerInput" class="form-control" type="text" name="writer" value="${board.writer }"/>
 			</div>
 			<div>
 				<input type="submit" value="추가" />
 			</div>
 		</form>
+		</div>
 	</div>
 	
 
