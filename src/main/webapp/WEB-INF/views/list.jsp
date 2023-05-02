@@ -36,6 +36,12 @@
 							<a href="/id/${board.id }"> <!--  pathVariable로 함 (쿼리스트링/requestParam 방법도 있음) --> 
 								${board.title }
 							</a>
+							<c:if test="${board.fileCount > 0 }">
+								<span>파일 : <span class="badge text-bg-info">
+								<i class="fa-regular fa-images"></i>
+								${board.fileCount }
+								</span>
+							</c:if>
 						</td>
 						<td>${board.writer }</td>
 						<td>${board.inserted }</td>

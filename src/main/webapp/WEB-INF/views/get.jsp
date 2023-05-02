@@ -23,6 +23,18 @@
 					<input type="text" class="form-control" readonly value="${board.title }" />
 
 				</div>
+				<!-- 그림 파일 출력 -->
+				<div class="mb-3">
+					<c:forEach items="${board.fileName}" var="fileName">
+						<div class="mb-3">
+							<!-- http://localhost:8080/image/3713990/rp.jfif -->
+							<!-- localhost8080/image/게시물번호/fileName -->
+							<img class="img-thumbnail img-fluid" src="http://localhost:8080/image/${board.id }/${fileName}" alt="" />
+						</div>
+					</c:forEach>
+				</div>
+				
+				
 				<div class="mb-3">
 					<lable class="form-label" for="bodyTextarea">본문</lable>
 					<textarea class="form-control" rows="10" readonly="">${board.body }</textarea>
