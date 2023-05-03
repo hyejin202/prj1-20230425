@@ -29,7 +29,9 @@
 						<div class="mb-3">
 							<!-- http://localhost:8080/image/3713990/rp.jfif -->
 							<!-- localhost8080/image/게시물번호/fileName -->
-							<img class="img-thumbnail img-fluid" src="http://localhost:8080/image/${board.id }/${fileName}" alt="" />
+							<!-- 이미지 파일 aws s3의 버킷에 저장됨 -->
+							<c:set var="bucketUrl" value="https://bucket0503-th12m27.s3.ap-northeast-2.amazonaws.com/board" />
+							<img class="img-thumbnail img-fluid" src="${bucketUrl}/${board.id }/${fileName}" alt="" />
 						</div>
 					</c:forEach>
 				</div>
