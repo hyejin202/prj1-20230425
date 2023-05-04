@@ -34,29 +34,34 @@
 					<div class="mb-3">
 						<label for="titleInput" class="form-label">제목</label> <input class="form-control" id="titleInput" type="text" name="title" value="${board.title }" />
 					</div>
-					
+
 					<!-- 첨부 이미지 보이기 -->
 					<div class="mb-3">
-					<c:forEach items="${board.fileName}" var="fileName" varStatus="status">
-						<div class="mb-3">
-							<div class="row">
-								<div class="col-2 d-flex">
-									<!-- removeFiles 컨트롤러에 전달 -->
-									<div class="form-check form-switch m-auto">
-										<input name="removeFiles" value="${fileName }" class="form-check-input" type="checkbox" role="switch" id="removeCheckBox${status.index}"> <label class="form-check-label" for="removeCheckBox${status.index}"> <i class="fa-solid fa-trash text-danger"></i>
-										</label>
+						<c:forEach items="${board.fileName}" var="fileName" varStatus="status">
+							<div class="mb-3">
+								<div class="row">
+									<div class="col-2 d-flex">
+										<!-- checkbox -->
+										<!-- removeFiles 컨트롤러에 전달 -->
+										<div class="form-check form-switch m-auto">
+											<input name="removeFiles" value="${fileName }" class="form-check-input" type="checkbox" role="switch" id="removeCheckBox${status.index}"> 
+											<label class="form-check-label" for="removeCheckBox${status.index}"> 
+												<i class="fa-solid fa-trash text-danger"></i>
+											</label>
+											<div class="form-text">총 10MB, 하나의 파일은 1MB를 초과할 수 없습니다.</div>
+										</div>
+									</div>
+
+									<div class="col-10">
+										<!-- http://localhost:8080/image/3713990/rp.jfif -->
+										<!-- localhost8080/image/게시물번호/fileName -->
+										<!--  <img class="img-thumbnail img-fluid" src="http://localhost:8080/image/${board.id }/${fileName}" alt="" />-->
+										<img class="img-thumbnail img-fluid" src="${bucketUrl}/${board.id }/${fileName}" alt="" />
 									</div>
 								</div>
 							</div>
-						</div>
-
-
-							<div class="col-10">
-								<!-- http://localhost:8080/image/3713990/rp.jfif -->
-								<!-- localhost8080/image/게시물번호/fileName -->
-								<img class="img-thumbnail img-fluid" src="http://localhost:8080/image/${board.id }/${fileName}" alt="" />
-							</div>
-					</c:forEach></div>
+						</c:forEach>
+					</div>
 
 					<div class="mb-3">
 						<label for="bodyTextarea" class="form-label">본문</label>
