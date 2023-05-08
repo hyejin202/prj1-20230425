@@ -12,6 +12,7 @@
 </head>
 <body>
 	<my:navBar current="memberList"></my:navBar>
+	<my:alert></my:alert>
 
 	<!-- .container-lg>.row justify-content-center>.col-12.col-mb-8.col-lg-6 -->
 	<div class="container-lg">

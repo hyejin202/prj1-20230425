@@ -32,7 +32,8 @@
 					<!-- form의 action을 따로 설정을 안하면 자기 자신파일로 리턴 -->
 					<input type="hidden" name="id" value="${board.id }" />
 					<div class="mb-3">
-						<label for="titleInput" class="form-label">제목</label> <input class="form-control" id="titleInput" type="text" name="title" value="${board.title }" />
+						<label for="titleInput" class="form-label">제목</label> 
+						<input class="form-control" id="titleInput" type="text" name="title" value="${board.title }" />
 					</div>
 
 					<!-- 첨부 이미지 보이기 -->
@@ -68,7 +69,8 @@
 						<textarea class="form-control" id="bodyTextarea" rows="10" name="body">${board.body }</textarea>
 					</div>
 					<div class="mb-3">
-						<label for="writerInput" class="form-label">작성자</label> <input class="form-control" id="writerInput" type="text" name="writer" value="${board.writer }" />
+						<label for="writerInput" class="form-label">작성자</label> 
+						<input class="form-control" id="writerInput" type="text" name="writer" value="${board.writer }" />
 					</div>
 					<div class="mb-3">
 						작성일시 : <input type="text" name="inserted" value="${board.inserted }" readonly />
@@ -76,7 +78,8 @@
 
 					<!-- 새 그림 파일 추가 -->
 					<div class="mb-3">
-						<label for="fileInput" class="form-label">그림파일</label> <input class="form-control" type="file" id="fileInput" name="files" accept="image/#" multiple>
+						<label for="fileInput" class="form-label">그림파일</label> 
+						<input class="form-control" type="file" id="fileInput" name="files" accept="image/#" multiple>
 					</div>
 
 					<div class="mb-3">
