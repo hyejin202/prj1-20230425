@@ -40,7 +40,6 @@ public interface BoardMapper {
 			SET 
 				title = #{title},
 				body = #{body},
-				writer = #{writer}
 			WHERE
 				id = #{id}
 			""")

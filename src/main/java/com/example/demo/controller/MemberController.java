@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.access.prepost.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,13 @@ public class MemberController {
 	private MemberService service;
 	
 	@GetMapping("signup")
+	@PreAuthorize("isAnonymous()")  //메소드 레벨에서 접근 제한
 	public void sighupForm() {
+		
+	}
+	
+	@GetMapping("login")
+	public void loginForm() {
 		
 	}
 	
@@ -45,12 +52,14 @@ public class MemberController {
 	}
 	// 경로 : /member/info?id=aaaa
 	@GetMapping("info")
+	@PreAuthorize("isAuthenticated()")
 	public void info(String id, Model model) {
 		Member member = service.get(id);
 		model.addAttribute("member", member);
 	}
 	
 	@PostMapping("remove")
+	@PreAuthorize("isAuthenticated()")
 	public String remove(Member member, RedirectAttributes rttr) {
 		
 		boolean ok = service.remove(member);
@@ -66,6 +75,7 @@ public class MemberController {
 	
 	//1. 수정버튼 눌렀을 때 수정 폼으로 이동
 	@GetMapping("modify")
+	@PreAuthorize("isAuthenticated()")
 	public void modifyForm(String id, Model model) {
 		Member member = service.get(id);
 		model.addAttribute("member", member);
@@ -87,7 +97,7 @@ public class MemberController {
 		} else {
 			rttr.addFlashAttribute("messgae", "회원정보 수정 중 문제가 발생했습니다.");
 			return "redirect:/member/modify?id=" + member.getId();
-		}
-		
+		}	
 	}
+	
 }
