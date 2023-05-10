@@ -135,6 +135,13 @@ public interface BoardMapper {
 				AND fileName = #{fileName}
 			""")
 	void deleteFileNameByBoardIdAndFileName(Integer boardId, String fileName);
+
+	@Select("""
+			SELECT id
+			FROM Board
+			WHERE writer = #{writer}
+			""")
+	List<Integer> selectIdByWriter(String writer);
 	
 
 	

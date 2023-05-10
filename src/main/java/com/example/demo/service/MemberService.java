@@ -18,6 +18,9 @@ public class MemberService {
 	private MemberMapper mapper;
 	
 	@Autowired
+	private BoardService boardService;
+	
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	//패스워드 암호화
@@ -44,7 +47,12 @@ public class MemberService {
 		int cnt = 0;
 		
 		if(passwordEncoder.matches(member.getPassword(), oldMember.getPassword())) {  //matches() 첫번째 파라미터: 평문, 두번째파라미터 : 암호화
-			//암호가 같으면?
+			// 암호가 같으면?
+			
+			// 이 회원이 작성한 게시물 row 삭제
+			boardService.removeByWriter(member.getId());
+			
+			// Member 테이블에서 삭제
 			cnt = mapper.deleteById(member);
 		} //else {
 			//암호가 같지 않으면?

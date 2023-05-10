@@ -30,7 +30,7 @@
 				</sec:authorize>
 				
 				
-				<sec:authorize access="isAuthenticated()">
+				<sec:authorize access="hasAuthority('admin')">
 					<li class="nav-item">
 						<a class="nav-link ${current eq 'memberList' ? 'active' : '' }" href="/member/list">회원목록</a>
 					</li>
@@ -41,11 +41,19 @@
 						<a class="nav-link ${current eq 'login' ? 'active' : '' }" href="/member/login">로그인</a>
 					</li>
 				</sec:authorize>
+				
+				<sec:authorize access="isAuthenticated()">
+					<li class="nav-item">
+						<a class="nav-link ${current eq 'memberInfo' ? 'active' : '' }" href="/member/info?id=<sec:authentication property="name" />">내 정보</a>
+					</li>
+				</sec:authorize>
+				
 				<sec:authorize access="isAuthenticated()">
 					<li class="nav-item">
 						<a class="nav-link" href="/member/logout">로그아웃</a>
 					</li>
 				</sec:authorize>
+				
 			</ul>
 			<form action="/list" class="d-flex" role="search">
 				
@@ -67,9 +75,6 @@
 	</div>
 </nav>
 
-<div>
-	<sec:authentication property="principal"/> <!-- 로그인 상태 알려줌 -->
-</div>
 
 
 

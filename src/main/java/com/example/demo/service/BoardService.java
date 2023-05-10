@@ -191,4 +191,12 @@ public class BoardService {
 		return cnt == 1;
 	}
 
+	public void removeByWriter(String writer) {
+		List<Integer> idList = mapper.selectIdByWriter(writer);
+		
+		for(Integer id : idList) {
+			remove(id);
+		}
+	}
+
 }
