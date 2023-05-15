@@ -23,7 +23,20 @@
 					<!-- .mb-3*5>(label.form-label[for]+input.form-control[name]) -->
 					<div class="mb-3">
 						<label for="inputId" class="form-label">아이디</label>
-						<input id="inputId" type="text" class="form-control" name="id" value="${member.id }"/>
+						<div class="input-group">
+							<input id="inputId" type="text" class="form-control" name="id" value="${member.id }"/>
+							<!-- 버튼을 누르면 ajax로 요청 보내 아이디 중복 확인 -->
+							<button type="button" id="checkIdBtn" class="btn btn-outline-secondary">중복확인</button>
+						</div>
+						
+						<!-- id 중복확인 메세지 --> 
+						<div id="availableIdMessage"  class="d-none form-text text-primary">
+							<i class="fa solid fa-check"></i>사용 가능한 아이디 입니다.
+						</div>
+						<div id="notAvailableIdMesssage" class="d-none form-text text-danger">
+							<i class="fa solid fa-check"></i>사용 불가능한 아이디 입니다.
+						</div>
+						
 					</div>
 					<div class="mb-3">
 						<label for="inputPassword" class="form-label">패스워드</label>
@@ -47,14 +60,36 @@
 					
 					<div class="mb-3">
 						<label for="inputNickName"  class="form-label">닉네임</label>
-						<input id="inputNickName" type="text" class="form-control" name="nickName" value="${member.nickName }" />
+						<div class="input-group">
+							<input id="inputNickName" type="text" class="form-control" name="nickName" value="${member.nickName }" />
+							<button type="button" id="checkNicknameBtn" class="btn btn-outline-secondary">중복확인</button>
+						</div>
+						
+						<div id="availableNicknameMessage"  class="d-none form-text text-primary">
+							<i class="fa solid fa-check"></i>사용 가능한 닉네임 입니다.
+						</div>
+						<div id="notAvailableNicknameMessage"  class="d-none form-text text-danger">
+							<i class="fa solid fa-check"></i>사용 불가능한 닉넥임 입니다.
+						</div>
+						
 					</div>
 					<div class="mb-3">
 						<label for="inputEmail" class="form-label">이메일</label>
-						<input id="inputEmail" type="email" class="form-control" name="email" value="${member.email }" />
+						<div class="input-group">
+							<input id="inputEmail" type="email" class="form-control" name="email" value="${member.email }" />
+							<button type="button" id="checkEmailBtn" class="btn btn-outline-secondary">중복확인</button>
+						</div>
+						
+						<div id="availableEmailMessage" class="d-none form-text text-primary">
+							<i class="fa solid fa-check"></i>사용 가능한 이메일 입니다.
+						</div>
+						<div id="notAvailableEmailMessage" class="d-none form-text text-danger">
+							<i class="fa solid fa-check"></i>사용 불가능한 이메일 입니다.
+						</div>
+						
 					</div>
 					<div class="mb-3">
-						<input id="signupSubmit" type="submit" class="btn btn-primary disabled" value="가입" />
+						<input id="signupSubmit" type="submit" class="btn btn-primary" disabled value="가입" />
 					</div>
 				</form>
 		</div>

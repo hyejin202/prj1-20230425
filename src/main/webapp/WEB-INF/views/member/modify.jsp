@@ -53,12 +53,33 @@
 					
 					<div class="mb-3">
 						<label for="nickNameInput" class="form-label">닉네임</label>
-						<input id="nickNameInput" type="text" class="form-control" name="nickName" value="${member.nickName }" />
+						<div class="input-group">
+							<input id="nickNameInput" type="text" class="form-control" name="nickName" value="${member.nickName }" />
+							<button type="button" id="checkNicknameBtn" class="btn btn-outline-secondary">중복확인</button>
+						</div>
+						<div id="availableNickname" class="d-none form-text text-primary">
+							<i class="fa solid fa-check"></i>
+							사용 가능한 닉네임 입니다.
+						</div>
+						<div id="notAvailableNickname" class="d-none form-text text-danger">
+							<i class="fa solid fa-check"></i>
+							사용 불가능한 닉네임 입니다.
+						</div>
 					</div>
 					
 					<div class="mb-3">
 						<label for="emailInput" class="form-label">이메일</label> 
-						<input id="emailInput" type="text" class="form-control" name="email" value="${member.email }" />
+						<div class="input-group">
+							<input id="emailInput" type="text" class="form-control" name="email" value="${member.email }" />
+							<button type="button" id="checkEmailBtn" class="btn btn-outline-secondary">중복 확인</button>							
+						</div>
+						<div id="availableEmail" class="d-none form-text text-primary">
+							<i class="fa solid fa-check"></i>사용 가능한 이메일 입니다.
+						</div>
+						<div id="notAvailableEmail" class="d-none form-text text-danger">
+							<i class="fa solid fa-check"></i>사용 불가능한 이메일 입니다.
+						</div>
+						
 					</div>
 					<div class="mb-3">
 						<label for="insertedInput" class="form-label">가입일자</label> 
@@ -66,7 +87,7 @@
 					</div>
 
 
-					<button id="modifyButton" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" class="btn btn-danger">수정</button>
+					<button disabled id="modifyButton" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" class="btn btn-danger" >수정</button>
 
 				</form>
 
@@ -98,10 +119,6 @@
 
 	<script src="/js/member/modify.js"></script>
 	
-
-
-
-
 
 </body>
 </html>

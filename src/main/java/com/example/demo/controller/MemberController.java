@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.access.prepost.*;
+import org.springframework.security.core.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,26 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@GetMapping("checkId/{id}")
+	@ResponseBody
+	public Map<String, Object> checkId(@PathVariable("id") String id) {
+		return service.checkId(id);
+	}
+	
+	@GetMapping("checkNickname/{nickname}")
+	@ResponseBody
+	public Map<String, Object> checkNickname(@PathVariable("nickname") String nickname,
+			Authentication authentication) {
+		return service.checkNickname(nickname, authentication);
+	}
+	
+	@GetMapping("checkEmail/{email}")
+	@ResponseBody
+	public Map<String, Object> checkEamil(@PathVariable("email") String email,
+			Authentication authentication) {
+		return service.checkEmail(email, authentication);
+	}
 	
 	@GetMapping("signup")
 	@PreAuthorize("isAnonymous()")  //메소드 레벨에서 접근 제한

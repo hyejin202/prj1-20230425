@@ -132,5 +132,14 @@ public class BoardController {
 			return "redirect:/add";
 		}
 	}
+	
+	@PostMapping("/like")
+	@ResponseBody
+	public Map<String, Object> like(
+			@RequestBody Like like,
+			Authentication authentication) {
+		// '{"like":true}' / '{"like":false}'
+		return service.like(like, authentication);
+	}
 }
 
