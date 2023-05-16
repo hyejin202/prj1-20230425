@@ -15,7 +15,7 @@ public interface BoardMapper {
 				title,
 				writer,
 				inserted
-			FROM Board
+			FROM Board 
 			ORDER BY id DESC
 			""")
 	List<Board> selectAll();
@@ -27,9 +27,10 @@ public interface BoardMapper {
 				b.body,
 				b.inserted,
 				b.writer,
-				f.fileName	
-			FROM Board b LEFT JOIN FileName f
-			ON b.id = f.boardId
+				f.fileName,
+				(SELECT COUNT(*) FROM BoardLike WHERE boardId = b.id) likeCount
+			FROM Board b LEFT JOIN FileName f ON b.id = f.boardId
+						 LEFT JOIN BoardLike bl ON b.id = bl.boardId
 			WHERE b.id = #{id}
 			""")
 	@ResultMap("boardResultMap")
@@ -66,9 +67,10 @@ public interface BoardMapper {
 				b.title,
 				b.writer,
 				b.inserted,
-				COUNT(f.id) fileCount
-			FROM Board b LEFT JOIN FileName f
-			ON b.id = f.boardId
+				COUNT(f.id) fileCount,
+				COUNT(bl.boardId) likeCount
+			FROM Board b LEFT JOIN FileName f ON b.id = f.boardId
+						LEFT JOIN BoardLike bl ON b.id = bl.boardId
 			
 			<where>
 				<if test="(type eq 'all') or (type eq 'title')">

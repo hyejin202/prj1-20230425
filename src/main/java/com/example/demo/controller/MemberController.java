@@ -84,9 +84,10 @@ public class MemberController {
 	
 	@PostMapping("remove")
 	@PreAuthorize("isAuthenticated() and (authentication.name eq #member.id)")
-	public String remove(Member member, RedirectAttributes rttr,
+	public String remove(Member member, 
+			RedirectAttributes rttr,
 			HttpServletRequest request) throws Exception {
-		
+	
 		boolean ok = service.remove(member);
 		
 		if(ok) {

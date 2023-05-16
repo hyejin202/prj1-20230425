@@ -17,11 +17,12 @@
 
 	<div class="container-lg">
 		<h1>게시물 목록 보기</h1>
-		<a class="btn btn-secondary" href="/add">추가하기</a>
+		<a class="btn btn-secondary" href="/add"><i class="fa-solid fa-plus"></i></a>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>#</th>
+					<th><i class="fa-regular fa-thumbs-up"></i></th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일시</th>
@@ -31,6 +32,7 @@
 				<c:forEach items="${boardList }" var="board">
 					<tr>
 						<td>${board.id }</td>
+						<td>${board.likeCount }</td>
 						<td>
 							<!-- 제목 클릭시 본문내용으로 넘어감 --> 
 							<a href="/id/${board.id }"> <!--  pathVariable로 함 (쿼리스트링/requestParam 방법도 있음) --> 

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.*;
 import org.springframework.security.access.prepost.*;
 import org.springframework.security.core.*;
 import org.springframework.stereotype.*;
@@ -46,10 +47,11 @@ public class BoardController {
 
 	//게시물 얻어오기
 	@GetMapping("/id/{id}")
-	public String board(@PathVariable("id") Integer id, Model model) {
+	public String board(@PathVariable("id") Integer id, Model model,
+			Authentication authentication) {
 		// 1. request param
 		// 2. business logic
-		Board board = service.getBoard(id);
+		Board board = service.getBoard(id, authentication);
 		// 3. add attribute
 		model.addAttribute("board", board);
 		// 4. forward/redirect
@@ -135,11 +137,23 @@ public class BoardController {
 	
 	@PostMapping("/like")
 	@ResponseBody
-	public Map<String, Object> like(
+	public ResponseEntity<Object> like(
 			@RequestBody Like like,
 			Authentication authentication) {
-		// '{"like":true}' / '{"like":false}'
-		return service.like(like, authentication);
+		
+		if(authentication == null) {  //status(403) : 권한 없음
+			//로그인 상태가 아니라면
+			return ResponseEntity
+					.status(403)
+					.body(Map.of("message", "로그인 후 좋아요 클릭해주세요"));
+		} else {
+			//로그인 상태라면
+			// '{"like":true}' / '{"like":false}'
+			return ResponseEntity
+					.ok()
+					.body(service.like(like, authentication));
+		}
+		
 	}
 }
 

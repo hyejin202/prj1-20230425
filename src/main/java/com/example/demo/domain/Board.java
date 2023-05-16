@@ -13,5 +13,9 @@ public class Board {
 	private String writer;
 	private LocalDateTime inserted;
 	private List<String> fileName;
+	
+	private Boolean liked;
+	
 	private Integer fileCount;
+	private Integer likeCount;
 }
