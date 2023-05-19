@@ -43,7 +43,7 @@ function listComment () {
 		method: "get",  //생략가능
 		success : function(comments) {
 			//console.log(data);
-			$("#commentListContainer").empty();
+			$("#commentListContainer").empty();  //비우기
 			for (const comment of comments) {
 				//console.log(comment);
 				$("#commentListContainer").append(`

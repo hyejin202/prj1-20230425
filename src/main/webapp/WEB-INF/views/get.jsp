@@ -114,9 +114,7 @@
 						<button id="updateCommentBtn">수정</button>
 					</div>
 					<div id="commentListContainer">
-						<div>댓글 내용1 : 누가 : 언제</div>
-						<div>댓글 내용2 : 누가 : 언제</div>
-						<div>댓글 내용2 : 누가 : 언제</div>
+						
 					</div>
 				</div>
 			</div>
