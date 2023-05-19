@@ -15,7 +15,7 @@
 	<my:navBar />
 	<my:alert />
 	
-	<div class="toast-container top-0 start-50 translate-middle-x p-3">
+	<div class="toast-container position-fixed  top-0 start-50 translate-middle-x p-3">
 	  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
 	  <div class="d-flex">
 	    <div class="toast-body"> </div>
@@ -88,6 +88,7 @@
 					<input type="text" class="form-control" readonly value="${board.inserted }" />
 				</div>
 				
+				
 				<sec:authorize access="isAuthenticated()">
 					<sec:authentication property="name" var="userId"/> <!-- 게시물 작성자 name얻어냄 -->
 					<c:if test="${userId eq board.writer }">
@@ -99,6 +100,25 @@
 					</c:if>
 				</sec:authorize>
 				
+				<div id="commentContainer">
+				
+					<div id="addCommentContainer">
+						<h6>입력</h6>
+						<textarea id="commentTextArea"></textarea>
+						<button id="sendCommentBtn">등록</button>
+					</div>
+					<div id="updateCommentContainer">
+						<h6>수정</h6>
+						<input type="hidden" id="commentUpdateIdInput"/>
+						<textarea id="commentUpdateTextArea"></textarea>
+						<button id="updateCommentBtn">수정</button>
+					</div>
+					<div id="commentListContainer">
+						<div>댓글 내용1 : 누가 : 언제</div>
+						<div>댓글 내용2 : 누가 : 언제</div>
+						<div>댓글 내용2 : 누가 : 언제</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -139,6 +159,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 	<script src="/js/board/like.js"></script>
+	<script src="/js/board/comment.js"></script>
 	
 </body>
 </html>
