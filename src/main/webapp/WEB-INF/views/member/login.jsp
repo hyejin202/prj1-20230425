@@ -18,13 +18,13 @@
 			<div class="col-12 col-md-8 col-lg-6">
 
 				<form method="post">
-					<div class="mb-3">
-						<label for="inputUserName" class="form-label">ID </label>
+					<div class="form-floating mb-3">
 						<input id="inputUserName" class="form-control" type="text" name="username" /> <br /> 
+						<label for="inputUserName" class="form-label">ID </label>
 					</div>
-					<div class="mb-3">
-						<label for="inputPassword" class="form-label">PW </label>
+					<div class="form-floating mb-3">
 						<input  id="inputPassword" class="form-control" type="password" name="password" /> <br /> 
+						<label for="inputPassword" class="form-label">PW </label>
 					</div>
 					<input class="btn btn-primary" type="submit" value="로그인" />
 				</form>

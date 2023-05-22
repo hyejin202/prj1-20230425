@@ -6,7 +6,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5" style="background-color: #e3f2fd;">
 	<div class="container-lg">
 		<a class="navbar-brand" href="/list">
-			<img src="/img/spring-logo.svg" alt="" height="24" />
+			<img src="/image/rp.jfif" alt="" height="60" />
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
 				
 				<sec:authorize access="isAuthenticated()">
 					<li class="nav-item">
-						<a class="nav-link ${current eq 'add' ? 'active' : '' }" href="/add">글작성</a>
+						<a class="nav-link ${current eq 'add' ? 'active' : '' }" href="/add"><i class="fa-regular fa-pen-to-square"></i></a>
 					</li>
 				</sec:authorize>
 				
@@ -32,7 +32,7 @@
 				
 				<sec:authorize access="hasAuthority('admin')">
 					<li class="nav-item">
-						<a class="nav-link ${current eq 'memberList' ? 'active' : '' }" href="/member/list">회원목록</a>
+						<a class="nav-link ${current eq 'memberList' ? 'active' : '' }" href="/member/list"><i class="fa-solid fa-address-book"></i></a>
 					</li>
 				</sec:authorize>
 				
@@ -44,7 +44,7 @@
 				
 				<sec:authorize access="isAuthenticated()">
 					<li class="nav-item">
-						<a class="nav-link ${current eq 'memberInfo' ? 'active' : '' }" href="/member/info?id=<sec:authentication property="name" />">내 정보</a>
+						<a class="nav-link ${current eq 'memberInfo' ? 'active' : '' }" href="/member/info?id=<sec:authentication property="name" />"><i class="fa-solid fa-user-gear"></i></a>
 					</li>
 				</sec:authorize>
 				

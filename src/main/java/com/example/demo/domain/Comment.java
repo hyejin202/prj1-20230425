@@ -12,4 +12,6 @@ public class Comment {
 	private String content;
 	private String memberId;
 	private LocalDateTime inserted;
+	
+	private Boolean editable;  //수정가능한지 불가능한지
 }
