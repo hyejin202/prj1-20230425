@@ -27,6 +27,9 @@ public class MemberService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private CommentMapper commentMapper;
+	
 	//패스워드 암호화
 	public boolean signup(Member member) {
 		String plain = member.getPassword();
@@ -52,6 +55,9 @@ public class MemberService {
 		
 		if(passwordEncoder.matches(member.getPassword(), oldMember.getPassword())) {  //matches() 첫번째 파라미터: 평문, 두번째파라미터 : 암호화
 			// 암호가 같으면?
+			
+			//이 회원이 작성한 댓글 삭제
+			commentMapper.deleteByMemberId(member.getId());
 			
 			// 이 회원이 작성한 게시물 row 삭제
 			boardService.removeByWriter(member.getId());

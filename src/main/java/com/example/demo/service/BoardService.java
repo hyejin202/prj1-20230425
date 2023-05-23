@@ -32,6 +32,9 @@ public class BoardService {
 	
 	@Autowired
 	private BoardLikeMapper likeMapper;
+	
+	@Autowired
+	private CommentMapper commentMapper;
 
 	public List<Board> listBoard() {
 		List<Board> list = mapper.selectAll();
@@ -155,9 +158,12 @@ public class BoardService {
 
 	// 삭제 메소드
 	public boolean remove(Integer id) {
+		//댓글 테이블 데이터 지우기
+		commentMapper.deleteByBoardId(id);
+		
 		// 좋아요 테이블 데이터 지우기
 		likeMapper.deleteByBoardId(id);
-
+	
 		// 파일명 조회
 		List<String> fileNames = mapper.selectFileNamesByBoardId(id);
 
